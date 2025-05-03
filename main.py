@@ -26,22 +26,22 @@ def main():
             # Display alternative post versions
             st.markdown("### Alternative Post Versions")
             
-            # Alternative 1 - Company Perspective "We" with company name
-            st.markdown("#### Alternative 1: Company Perspective (with company name)")
+            # Alternative 1
+            st.markdown("#### Alternative 1")
             st.text_area("Alternative 1:", value=post1, height=150)
             if st.button("Copy Alternative 1"):
                 st.success("✅ Alternative 1 selected. Use Ctrl+C or Cmd+C to copy")
                 st.code(post1, language="markdown")
             
-            # Alternative 2 - Personal Perspective "I"
-            st.markdown("#### Alternative 2: Personal Perspective")
+            # Alternative 2
+            st.markdown("#### Alternative 2")
             st.text_area("Alternative 2:", value=post2, height=150)
             if st.button("Copy Alternative 2"):
                 st.success("✅ Alternative 2 selected. Use Ctrl+C or Cmd+C to copy")
                 st.code(post2, language="markdown")
             
-            # Alternative 3 - Company Perspective "We" without company name
-            st.markdown("#### Alternative 3: Company Perspective (without company name)")
+            # Alternative 3
+            st.markdown("#### Alternative 3")
             st.text_area("Alternative 3:", value=post3, height=150)
             if st.button("Copy Alternative 3"):
                 st.success("✅ Alternative 3 selected. Use Ctrl+C or Cmd+C to copy")
