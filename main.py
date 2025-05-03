@@ -5,8 +5,8 @@ def main():
     st.title("Upsonic LinkedIn Post Generator")
     st.subheader("Create professional LinkedIn posts for Upsonic with different tones")
     
-    # Input for company name
-    company_name = st.text_input("Enter Company Name", "Upsonic")
+    # Input for company name (required)
+    company_name = st.text_input("Enter Company Name", placeholder="Required")
     
     # Tone selection
     tone_options = ["General Tone", "Friendly Tone", "Formal&Professional Tone"]
