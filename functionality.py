@@ -26,7 +26,7 @@ linkedin_post_writer_agent = Direct()
 
 def generate_markdown(company_name, tone):
 
-    the_company_name = f"Company Name: {company_name}"
+    the_company_name = f"Event owner company is Upsonic and Company Name (post owner): {company_name}"
 
 
 
