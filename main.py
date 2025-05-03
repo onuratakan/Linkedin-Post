@@ -23,25 +23,28 @@ def main():
             # Display the generated markdown
             st.subheader("Generated LinkedIn Posts:")
             
-            # Post 1 - Company Perspective "We" with company name
-            st.markdown("### Post 1: Company Perspective (with company name)")
-            st.text_area("Company Post:", value=post1, height=150)
-            if st.button("Copy Post 1"):
-                st.success("✅ Post 1 text selected. Use Ctrl+C or Cmd+C to copy")
+            # Display alternative post versions
+            st.markdown("### Alternative Post Versions")
+            
+            # Alternative 1 - Company Perspective "We" with company name
+            st.markdown("#### Alternative 1: Company Perspective (with company name)")
+            st.text_area("Alternative 1:", value=post1, height=150)
+            if st.button("Copy Alternative 1"):
+                st.success("✅ Alternative 1 selected. Use Ctrl+C or Cmd+C to copy")
                 st.code(post1, language="markdown")
             
-            # Post 2 - Personal Perspective "I"
-            st.markdown("### Post 2: Personal Perspective")
-            st.text_area("Personal Post:", value=post2, height=150)
-            if st.button("Copy Post 2"):
-                st.success("✅ Post 2 text selected. Use Ctrl+C or Cmd+C to copy")
+            # Alternative 2 - Personal Perspective "I"
+            st.markdown("#### Alternative 2: Personal Perspective")
+            st.text_area("Alternative 2:", value=post2, height=150)
+            if st.button("Copy Alternative 2"):
+                st.success("✅ Alternative 2 selected. Use Ctrl+C or Cmd+C to copy")
                 st.code(post2, language="markdown")
             
-            # Post 3 - Company Perspective "We" without company name
-            st.markdown("### Post 3: Company Perspective (without company name)")
-            st.text_area("Team Post:", value=post3, height=150)
-            if st.button("Copy Post 3"):
-                st.success("✅ Post 3 text selected. Use Ctrl+C or Cmd+C to copy")
+            # Alternative 3 - Company Perspective "We" without company name
+            st.markdown("#### Alternative 3: Company Perspective (without company name)")
+            st.text_area("Alternative 3:", value=post3, height=150)
+            if st.button("Copy Alternative 3"):
+                st.success("✅ Alternative 3 selected. Use Ctrl+C or Cmd+C to copy")
                 st.code(post3, language="markdown")
         else:
             st.error("Please enter a company name.")
