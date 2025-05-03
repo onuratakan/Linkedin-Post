@@ -1,4 +1,5 @@
 from upsonic import Agent, Task, Direct, ObjectResponse
+import os
 
 
 example_linkedin_posts = """
@@ -19,7 +20,7 @@ class Post(ObjectResponse):
     post_markdown_3: str
 
 system_prompt = """
-You are a LinkedIn post writer, you write high quality posts to make it easier for people visiting events to share posts in the format they want about the event they are at. You carefully examine the sample texts given to write in a humane style. You write posts in 5 to 6 sentences and do not add hashtags at the end. You write a total of 3 posts for each request. In the first one, you use the company's name on behalf of the company and write the post as 'we'. In the second one, instead of using the company's name, you write as 'I was at the example event today' in a personal language as 'I' and do not mention the company's name. In the third one, you write as 'we' on behalf of the company but do not use the company's name. 
+You are a LinkedIn post writer, you write high quality posts to make it easier for people visiting events to share posts in the format they want about the event they are at. You carefully examine the sample texts given to write in a humane style. You write posts in 5 to 6 sentences and do not add hashtags at the end. You write a total of 3 posts for each request. In the first one, you use the company's name on behalf of the company and write the post as 'we'. In the second one, instead of using the company's name, you write as 'I was at the example event today' in a personal language as 'I' and do not mention the company's name. In the third one, you write as 'we' on behalf of the company but do not use the company's name  You take the event name from the given examples and your current task is to write the event 'Only Agent Founders: Istanbul' so you won't use any other event names. 
 """
 
 linkedin_post_writer_agent = Direct()
@@ -29,13 +30,6 @@ def generate_markdown(company_name, tone):
     the_company_name = f"Event owner company is Upsonic and Company Name (post owner): {company_name}"
 
 
-
-    similar_linkedin_post_writing_task= Task(
-    system_prompt+the_company_name+"Using the example texts provided, write three LinkedIn posts that closely resemble their style and structure. Each post should reflect the same tone, formatting, and storytelling approach used in the examples. Make sure to replace the placeholder company name 'Example AI' with the actual company name provided. Maintain clarity, energy, and the concise insight-focused style seen in the examples."+example_linkedin_posts, 
-        response_format=Post,
-
-    )
-
     friendly_linkedin_post_writing_task= Task(
     system_prompt+the_company_name+"Based on the example texts shared, write three LinkedIn posts using a more friendly and conversational tone. These posts should feel more personal, relaxed, and human — as if you're speaking directly to your network. Feel free to use emojis, rhetorical questions, or casual phrases to build connection. Replace 'Example AI' with the actual company name.Focus on clarity, storytelling, and keeping the message engaging while still informative. You really have to be careful when writing in a friendly tone because phrases like wow, the atmosphere is sparkling make it extremely obvious that the post was written by ai Avoid exclamation points and too much surprise, but always add 2-3 emojis to every post. " + example_linkedin_posts, 
         response_format=Post,
@@ -43,19 +37,17 @@ def generate_markdown(company_name, tone):
     )
 
     formal_professional_linkedin_post_writing_task= Task(
-    system_prompt+the_company_name+"Using the provided example texts for reference, write three LinkedIn posts in a formal and professional tone. These posts should be more structured, reserved in style, and suitable for an executive or official company voice. Avoid casual language and emojis, and emphasize clear communication of value and achievement. Replace any occurrence of 'Example AI' with the actual company name provided. Make sure the tone is consistent with high-level corporate communication on LinkedIn."+example_linkedin_posts, 
+    system_prompt+the_company_name+"Using the provided example texts for reference, write three LinkedIn posts in a formal and professional tone. These posts should be more structured, reserved in style, and suitable for an executive or official company voice. Avoid casual language and emojis, and emphasize clear communication of value and achievement. Replace any occurrence of 'Example AI' with the actual company name provided. Make sure the tone is consistent with high-level corporate communication on LinkedIn.Please don't make fancy and crazy sentences."+example_linkedin_posts, 
         response_format=Post,
 
     )
 
     result = None
 
-    if tone == "General Tone":
-        result = linkedin_post_writer_agent.do(similar_linkedin_post_writing_task)
-    elif tone == "Friendly Tone":
+
+    if tone == "Friendly Tone":
         result = linkedin_post_writer_agent.do(friendly_linkedin_post_writing_task)
     elif tone == "Formal&Professional Tone":
         result = linkedin_post_writer_agent.do(formal_professional_linkedin_post_writing_task)
 
     return result.post_markdown_1, result.post_markdown_2, result.post_markdown_3
-
